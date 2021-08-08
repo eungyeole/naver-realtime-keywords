@@ -21,6 +21,9 @@
             ],
             "js": [
                 "scripts/index.js"
+            ],
+            "css": [
+                "styles/realtimekeywords.css"
             ]
         }
     ]
