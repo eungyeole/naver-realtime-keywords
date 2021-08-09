@@ -63,5 +63,29 @@ function RealTimeWordsItem(props){
         <span class="rank-text">${keyword}</span>
     `
     element.appendChild(aTag);
+    aTag.appendChild(RankIcon(state));
+    return element;
+}
+
+function RankIcon(state){
+    const element = document.createElement("span");
+    element.className = 
+        state==="+" ? "rate_up" 
+        : state==="-" ? "rate_down" 
+        : "rate_stable"; 
+    return element;
+}
+
+function DropDownMenuItem(props){
+    const { rank, keyword, state } = props;
+    const element = document.createElement("div");
+    const aTag = document.createElement("a");
+    aTag.href=url+keyword; aTag.className="menu-item";
+    aTag.innerHTML = `
+        <span class="rank-num">${rank}</span>
+        <span class="rank-text">${keyword}</span>
+    `
+    aTag.appendChild(RankIcon(state));
+    element.appendChild(aTag);
     return element;
 }
