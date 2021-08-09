@@ -4,19 +4,68 @@
     right: 30px;
     bottom: 0;
     overflow: hidden;
-    max-width: 270px;
+    width: 248px;
     height: 52px;
     text-align: right;
-}
-#gnb .group_keywords > div{
-    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+#gnb .slider-viewport > div{
+    height: 100%;
+    display: flex;
+    width: 100%;
+    align-items: center;
 } 
+
+#gnb .rank-item{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    height: 100%;
+}
+
 #gnb .group_keywords .rank-num{
     color: #03c75a;
     font-weight: 700;
     font-size: 15px;
     margin: 0 10px;
+}
+
+#gnb .group_keywords .rank-text{
+    color: #465061;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+}
+
+#gnb .group_keywords .slider-viewport{
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+    transition: 0.3s;
+    transform: translate(0px, -0%);
+}
+
+#gnb .keywords_more{
+    float: left;
+    margin-left: 17px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px;
+    color: #202020;
+    text-align: right;
+}
+#gnb .keywords_more:after{
+    display: inline-block;
+    width: 11px;
+    height: 7px;
+    background-position: -83px -296px;
+    background-repeat: no-repeat;
+    vertical-align: top;
+    content: '';
+    margin-left: 7px;
+    vertical-align: 2px;
+    background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_57f073.png);
+    background-size: 444px 439px;
 }

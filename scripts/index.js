@@ -12,14 +12,44 @@ async function fetcher(){
 (async ()=>{
     const data = await fetcher();
     containerElement.appendChild(RealItemWordsList(data))
+    const sliderViewport = document.getElementsByClassName("slider-viewport")[0];
+    const sliderInterval = elementAdaptSlider(sliderViewport);
+    sliderInterval();
 })()
 
 
+function elementAdaptSlider(element){
+    const sliderInterval = () => setInterval(()=>{
+        const length = element.childElementCount*100;
+        const now = parseInt(element.style.transform.replace(/[^0-9]/g, ""));
+        if(now+100 < length) element.style.transform=`translateY(-${now+100}%)`;
+        else element.style.transform=`translateY(-0%)`
+    },5000)
+    return sliderInterval;
+}
+
 function RealItemWordsList(props = []){
     const element = document.createElement("div");
-    const keys = Object.keys(props);
-    element.className="group_keywords";
-    element.append(...keys.map((i)=>RealTimeWordsItem(props[i])))
+    const slider = Slider();
+    const moreButton = MoreButton();
+    element.className="group_keywords"; 
+    slider.append(...Object.keys(props).map((i)=>RealTimeWordsItem(props[i])))
+    element.append(slider, moreButton);
+    return element;
+}
+
+
+function Slider(){
+    const slider = document.createElement("div");
+    slider.className="slider-viewport"; 
+    slider.style.transform="translateY(0%)";
+    return slider;
+}
+
+function MoreButton(text =  ""){
+    const element = document.createElement("a");
+    element.className="keywords_more";
+    element.innerText=text;
     return element;
 }
 
