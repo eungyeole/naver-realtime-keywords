@@ -83,10 +83,10 @@
     display: inline-block;
     width: 9px;
     height: 6px;
-    background-position: -246px -204px;
+    background-position: -257px -204px;
     background-repeat: no-repeat;
     vertical-align: top;
-    vertical-align: 2px;
+    vertical-align: 1px;
     content: '';
 }
 
@@ -103,7 +103,7 @@
 #gnb 
 .keywords_more:after, 
 .rate_up:before, 
-rate_down:before
+.rate_down:before
 {
     background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_57f073.png);
     background-size: 444px 439px;
