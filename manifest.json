@@ -10,8 +10,6 @@
         "default_popup": "views/popup.html"
     },
     "permissions": [
-        "activeTab",
-        "tabs"
     ],
     "content_scripts": [
         {
