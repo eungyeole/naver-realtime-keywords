@@ -108,3 +108,53 @@
     background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_57f073.png);
     background-size: 444px 439px;
 }
+
+
+.keywords-menu{
+    width: 248px;
+    position: absolute;
+    right: 30px;
+    padding: 5px 0;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #dae1e6;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+}
+
+.menu-list {
+    padding: 0 12px;
+}
+.menu-list .rank-num{
+    color: #545454;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.menu-list .rank-text{
+    color: #465061;
+    font-size: 13px;
+    width: 100%;
+    text-align: left;
+}
+
+.menu-header{
+    font-size: 15px;
+    padding: 5px 12px;
+    color: #212223;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.menu-footer{
+    color: #3caea3;
+    padding: 5px 12px;
+}
+
+#gnb .menu-item{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 5px 0;
+}
