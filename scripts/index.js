@@ -135,7 +135,7 @@ function DropDownMenu(data){
 function koreandateFormat(time = new Date()) {
     const days = [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ];
     const year = time.getFullYear();
-    const month = time.getMonth();
+    const month = time.getMonth()+1;
     const date = time.getDate();
     const day = days[time.getDay()];
     const hours = time.getHours();
