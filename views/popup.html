@@ -5,8 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네이버 실시간 검색어</title>
+    <style>
+        .main{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 25px;
+        }
+        a {
+            margin: 5px 0;
+            align-items: center;
+            display: flex;
+        }
+        img{
+            margin-right: 2px;
+        }
+    </style>
 </head>
 <body>
-    test
+    <div class="main">
+        <strong>실시간검색어</strong>
+        <a class="appInfo" href="https://github.com/eungyeole/naver-realtime-keywords" target="_blank"> 
+          <img height="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg">
+          <span>Github</span>
+        </a>
+        <a class="appInfo" href="mailto:eungyeole@naver.com" target="_blank"> 
+          <img height="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/gmail.svg">
+          <span> Contact: eungyeole@naver.com </span>
+        </a>
+        <small>실시간 검색어는 네이트의 실시간 검색어를 통해 제공합니다.</small>
+    </div>
 </body>
 </html>
