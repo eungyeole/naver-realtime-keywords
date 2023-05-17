@@ -1,6 +1,14 @@
-const containerElement = document.getElementById("NM_FAVORITE");
-const weatherElement = document.getElementById("NM_WEATHER");
 const url = "https://search.naver.com/search.naver?query=";
+
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
 
 async function fetcher() {
   const { top10 } = await (
@@ -11,15 +19,30 @@ async function fetcher() {
 
 (async () => {
   if (window.location.host !== "search.naver.com") {
-    weatherElement.style.height = "0px";
-    weatherElement.style.width = "0px";
-    const data = await fetcher();
-    containerElement.appendChild(RealItemWordsList(data));
-    containerElement.appendChild(DropDownMenu(data));
-    const sliderViewport =
-      document.getElementsByClassName("slider-viewport")[0];
-    const sliderInterval = elementAdaptSlider(sliderViewport);
-    sliderInterval();
+    // weatherElement.style.height = "0px";
+    // weatherElement.style.width = "0px";
+    const initializeRealTimeWords = debounce(async () => {
+      const containerElement = document.getElementById("right-content-area");
+      const realtimeKeywordElement =
+        document.getElementById("realtime_keyword");
+
+      if (containerElement && !realtimeKeywordElement) {
+        const data = await fetcher();
+
+        const wrapper = document.createElement("div");
+        wrapper.id = "realtime_keyword";
+        wrapper.appendChild(RealItemWordsList(data));
+        wrapper.appendChild(DropDownMenu(data));
+
+        containerElement.prepend(wrapper);
+        const sliderViewport =
+          document.getElementsByClassName("slider-viewport")[0];
+        const sliderInterval = elementAdaptSlider(sliderViewport);
+        sliderInterval();
+      }
+    }, 1000);
+
+    document.addEventListener("DOMNodeInserted", initializeRealTimeWords);
   }
 })();
 
@@ -27,7 +50,6 @@ function onToggle() {
   const dropdownElement = document.getElementsByClassName("keywords-menu")[0];
   const state = dropdownElement.style.display === "none" ? "block" : "none";
   dropdownElement.style.display = state;
-  console.log("test");
 }
 
 function elementAdaptSlider(element) {

@@ -1,33 +1,27 @@
 {
-    "manifest_version": 2,
-   
-    "name": "실시간 검색어",
-    "description": "네이버에서 실시간 검색어 보기 - 실시간 검색어는 네이트의 실시간 검색어를 통해 제공합니다.",
-    "version": "1.0.3",
-   
-    "browser_action": {
-        "default_title": "실시간 검색어",
-        "default_popup": "views/popup.html"
-    },
-    "permissions": [
-    ],
-    "background": {
-        "scripts": ["scripts/background.js"]
-    },
-    "content_scripts": [
-        {
-            "runt_at" : "document_start",
-            "matches": [
-                "https://www.naver.com/",
-                "https://search.naver.com/*"
-            ],
-            "js": [
-                "scripts/index.js",
-                "scripts/keywords.js"
-            ],
-            "css": [
-                "styles/realtimekeywords.css"
-            ]
-        }
-    ]
+  "manifest_version": 3,
+  "name": "실시간 검색어",
+  "description": "네이버에서 실시간 검색어 보기 - 실시간 검색어는 네이트의 실시간 검색어를 통해 제공합니다.",
+  "version": "1.0.4",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "runt_at": "document_start",
+      "matches": [
+        "https://www.naver.com/",
+        "https://search.naver.com/*"
+      ],
+      "js": [
+        "scripts/index.js"
+      ],
+      "css": [
+        "styles/realtimekeywords.css"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "실시간 검색어",
+    "default_popup": "views/popup.html"
+  },
+  "content_security_policy": {}
 }

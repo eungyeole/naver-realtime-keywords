@@ -1,45 +1,51 @@
-#gnb .group_keywords{
-    position: absolute;
-    top: 0;
-    right: 30px;
-    bottom: 0;
-    overflow: hidden;
-    width: 248px;
+#realtime_keyword {
+    position: relative;
+    width: 100%;
     height: 52px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+    border-radius: 8px;
+    padding: 0 18px 0px 18px;
+    box-sizing: border-box;
+}
+#realtime_keyword .group_keywords{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
     text-align: right;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-#gnb .slider-viewport > div{
+#realtime_keyword .slider-viewport > div{
     height: 100%;
     display: flex;
     width: 100%;
     align-items: center;
 } 
 
-#gnb .rank-item{
+#realtime_keyword .rank-item{
     width: 100%;
     align-items: center;
     display: flex;
     height: 100%;
 }
 
-#gnb .group_keywords .rank-num{
+#realtime_keyword .group_keywords .rank-num{
     color: #03c75a;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 1.5rem;
     margin: 0 10px;
 }
 
-#gnb .group_keywords .rank-text{
+#realtime_keyword .group_keywords .rank-text{
     color: #465061;
-    font-size: 14px;
+    font-size: 1.5rem;
     width: 100%;
     text-align: left;
 }
 
-#gnb .group_keywords .slider-viewport{
+#realtime_keyword .group_keywords .slider-viewport{
     height: 100%;
     width: 100%;
     will-change: transform;
@@ -47,7 +53,7 @@
     transform: translate(0px, -0%);
 }
 
-#gnb .keywords_more{
+#realtime_keyword .keywords_more{
     float: left;
     margin-left: 17px;
     cursor: pointer;
@@ -56,7 +62,7 @@
     color: #202020;
     text-align: right;
 }
-#gnb .keywords_more:after{
+#realtime_keyword .keywords_more:after{
     display: inline-block;
     width: 11px;
     height: 7px;
@@ -68,7 +74,7 @@
     vertical-align: 2px;
 }
 
-#gnb .rate_up:before{
+#realtime_keyword .rate_up:before{
     display: inline-block;
     width: 9px;
     height: 6px;
@@ -79,7 +85,7 @@
     content: '';
 }
 
-#gnb .rate_down:before{
+#realtime_keyword .rate_down:before{
     display: inline-block;
     width: 9px;
     height: 6px;
@@ -90,7 +96,7 @@
     content: '';
 }
 
-#gnb .rate_stable:before{
+#realtime_keyword .rate_stable:before{
     display: inline-block;
     width: 8px;
     height: 2px;
@@ -100,7 +106,7 @@
 }
 
 
-#gnb 
+#realtime_keyword 
 .keywords_more:after, 
 .rate_up:before, 
 .rate_down:before
@@ -109,26 +115,38 @@
     background-size: 444px 439px;
 }
 
+@keyframes popup {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 
 .keywords-menu{
-    width: 248px;
+    width: 100%;
+    z-index: 1000;
     position: absolute;
-    right: 30px;
+    top: calc(100% + 10px);
+    right: 0;
     padding: 5px 0;
     border-radius: 5px;
     background: white;
-    border: 1px solid #dae1e6;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
+    animation: popup 0.15s ease-in-out;
+    box-shadow: 0 0 0 1px #e3e5e8, 0 4px 8px 0 rgba(0,0,0,.3);
     box-sizing: border-box;
 }
 
 .menu-list {
-    padding: 0 12px;
+    padding: 0 18px;
 }
 .menu-list .rank-num{
     color: #545454;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 1.5rem;
     margin-right: 10px;
     width: 16px;
     text-align: right;
@@ -136,24 +154,24 @@
 
 .menu-list .rank-text{
     color: #465061;
-    font-size: 13px;
+    font-size: 1.5rem;
     width: 100%;
     text-align: left;
 }
 
 .menu-header{
-    font-size: 15px;
-    padding: 5px 12px;
+    font-size: 1.5rem;
+    padding: 18px;
     color: #212223;
     font-weight: 500;
     margin-bottom: 10px;
 }
 .menu-footer{
     color: #3caea3;
-    padding: 5px 12px;
+    padding: 18px;
 }
 
-#gnb .menu-item{
+#realtime_keyword .menu-item{
     width: 100%;
     align-items: center;
     display: flex;
