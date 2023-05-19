@@ -39,11 +39,12 @@
 }
 
 #realtime_keyword .group_keywords .rank-text{
-    color: #465061;
+    color: var(--color_title);
     font-size: 1.5rem;
     width: 100%;
     text-align: left;
 }
+
 
 #realtime_keyword .group_keywords .slider-viewport{
     height: 100%;
@@ -134,7 +135,7 @@
     right: 0;
     padding: 5px 0;
     border-radius: 5px;
-    background: white;
+    background: var(--color_block_bg);
     animation: popup 0.15s ease-in-out;
     box-shadow: 0 0 0 1px #e3e5e8, 0 4px 8px 0 rgba(0,0,0,.3);
     box-sizing: border-box;
@@ -153,7 +154,7 @@
 }
 
 .menu-list .rank-text{
-    color: #465061;
+    color: var(--color_caption2);
     font-size: 1.5rem;
     width: 100%;
     text-align: left;
@@ -162,10 +163,11 @@
 .menu-header{
     font-size: 1.5rem;
     padding: 18px;
-    color: #212223;
+    color: var(--color_title);
     font-weight: 500;
     margin-bottom: 10px;
 }
+
 .menu-footer{
     color: #3caea3;
     padding: 18px;
