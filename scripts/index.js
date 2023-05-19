@@ -1,3 +1,4 @@
+const coffeeUrl = "https://toss.me/eungyeole";
 const url = "https://search.naver.com/search.naver?query=";
 
 function debounce(func, timeout = 300) {
@@ -19,8 +20,6 @@ async function fetcher() {
 
 (async () => {
   if (window.location.host !== "search.naver.com") {
-    // weatherElement.style.height = "0px";
-    // weatherElement.style.width = "0px";
     const initializeRealTimeWords = debounce(async () => {
       const containerElement = document.getElementById("right-content-area");
       const realtimeKeywordElement =
@@ -48,7 +47,7 @@ async function fetcher() {
 
 function onToggle() {
   const dropdownElement = document.getElementsByClassName("keywords-menu")[0];
-  const state = dropdownElement.style.display === "none" ? "block" : "none";
+  const state = dropdownElement.style.display === "none" ? "flex" : "none";
   dropdownElement.style.display = state;
 }
 
@@ -135,43 +134,93 @@ function DropDownMenuList(props = []) {
 function DropDownHeader() {
   const element = document.createElement("div");
   element.className = "menu-header";
-  element.innerText = "급상승 검색어";
+
+  const title = document.createElement("h1");
+  title.className = "menu-header_title";
+  title.innerText = "급상승 검색어";
+
+  const update = document.createElement("span");
+  update.className = "menu-header_update";
+  const now = new Date();
+  update.innerText = koreandateFormat(now);
+
+  element.appendChild(title);
+  element.appendChild(update);
+  return element;
+}
+
+function DropDownMenu(data) {
+  const ads = [];
+
+  const element = document.createElement("div");
+  element.className = "keywords-menu";
+  element.style.display = "none";
+  element.appendChild(DropDownHeader());
+  ads.length > 0 &&
+    element.appendChild(
+      AdsBanner({
+        ads,
+      })
+    );
+
+  element.appendChild(DropDownMenuList(data));
+  element.appendChild(DropDownFooter());
+
   return element;
 }
 
 function DropDownFooter() {
   const element = document.createElement("div");
   element.className = "menu-footer";
-  const now = new Date();
-  element.innerText = koreandateFormat(now);
+
+  const aTagCoffe = document.createElement("a");
+  aTagCoffe.className = "menu-footer_give-coffee";
+  aTagCoffe.innerText = "커피한잔 사주기";
+  aTagCoffe.href = coffeeUrl;
+  aTagCoffe.target = "_blank";
+
+  const aTag = document.createElement("a");
+  aTag.href =
+    "mailto:eungyeole@naver.com?subject=광고문의&body=현재는 배너형, 텍스트형, 키워드형 광고를 지원하고 있습니다.%0D%0A더 자세한 문의는 메일로 부탁드립니다.";
+  aTag.className = "menu-footer_ads-link";
+  aTag.innerText = "광고문의";
+
+  element.appendChild(aTagCoffe);
+  element.appendChild(aTag);
+
   return element;
 }
 
-function DropDownMenu(data) {
+function AdsBanner(data) {
   const element = document.createElement("div");
-  element.className = "keywords-menu";
-  element.style.display = "none";
-  element.appendChild(DropDownHeader());
-  element.appendChild(DropDownMenuList(data));
-  element.appendChild(DropDownFooter());
+  element.className = "ads_banner";
+
+  const createBannerItem = (src, href) => {
+    const bannerItem = document.createElement("a");
+    bannerItem.href = href;
+    bannerItem.target = "_blank";
+
+    const bannerImage = document.createElement("img");
+    bannerImage.src = src;
+
+    bannerItem.appendChild(bannerImage);
+    return bannerItem;
+  };
+
+  data.ads.forEach((item) => {
+    const bannerItem = createBannerItem(item.imageUrl, item.href);
+    element.appendChild(bannerItem);
+  });
+
   return element;
 }
 
 function koreandateFormat(time = new Date()) {
-  const days = [
-    "일요일",
-    "월요일",
-    "화요일",
-    "수요일",
-    "목요일",
-    "금요일",
-    "토요일",
-  ];
-  const year = time.getFullYear();
-  const month = time.getMonth() + 1;
-  const date = time.getDate();
-  const day = days[time.getDay()];
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  return `${year}년 ${month}월 ${date}일 ${day} ${hours}:${minutes} 기준`;
+  const isUnder10 = (num) => (num < 10 ? `0${num}` : num);
+
+  const month = isUnder10(time.getMonth() + 1);
+  const date = isUnder10(time.getDate());
+  const hours = isUnder10(time.getHours());
+  const minutes = isUnder10(time.getMinutes());
+  return `${month}. ${date}. ${hours}:${minutes}`;
 }

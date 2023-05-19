@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "실시간 검색어",
   "description": "네이버에서 실시간 검색어 보기 - 실시간 검색어는 네이트의 실시간 검색어를 통해 제공합니다.",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "permissions": [],
   "content_scripts": [
     {
@@ -12,7 +12,8 @@
         "https://search.naver.com/*"
       ],
       "js": [
-        "scripts/index.js"
+        "scripts/index.js",
+        "scripts/collection.js"
       ],
       "css": [
         "styles/realtimekeywords.css"
@@ -22,6 +23,5 @@
   "action": {
     "default_title": "실시간 검색어",
     "default_popup": "views/popup.html"
-  },
-  "content_security_policy": {}
+  }
 }
