@@ -12,16 +12,21 @@
         "https://search.naver.com/*"
       ],
       "js": [
-        "scripts/index.js",
-        "scripts/collection.js"
+        "dist/content-scripts.js"
       ],
       "css": [
-        "styles/realtimekeywords.css"
+        "src/styles/realtimekeywords.css"
       ]
     }
   ],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
   "action": {
     "default_title": "실시간 검색어",
-    "default_popup": "views/popup.html"
-  }
+    "default_popup": "src/views/popup.html"
+  },
+  "host_permissions": [
+    "https://naver.com/*"
+  ]
 }
