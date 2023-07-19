@@ -1,15 +1,20 @@
 import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
+import { Ranking } from "../../../apis/types";
 import "./header";
 import "./keyword-list";
 
 @customElement("naver-popup")
 export class NaverPopup extends LitElement {
+  @property({ type: Array }) rankigns: Ranking[] = [];
+
   render() {
     return html`
       <div class="container">
         <naver-popup-header></naver-popup-header>
-        <naver-popup-keyword-list .rankigns=${[]}></naver-popup-keyword-list>
+        <naver-popup-keyword-list
+          .rankigns=${this.rankigns}
+        ></naver-popup-keyword-list>
       </div>
     `;
   }
@@ -54,4 +59,10 @@ export class NaverPopup extends LitElement {
       }
     `,
   ];
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "naver-popup": NaverPopup;
+  }
 }

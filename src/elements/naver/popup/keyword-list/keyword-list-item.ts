@@ -9,7 +9,7 @@ export class NaverPopupKeywordListItem extends LitElement {
   render() {
     return html`
       <div class="container">
-        <a href="${this.ranking.keyword}">
+        <a class="keyword-item" href="${this.ranking.keyword}">
           <span class="rank">${this.ranking.rank}</span>
           <span class="keyword">${this.ranking.keyword}</span>
         </a>
@@ -19,6 +19,15 @@ export class NaverPopupKeywordListItem extends LitElement {
 
   static styles = [
     css`
+      .keyword-item {
+        text-decoration: none;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        height: 100%;
+        margin: 8px 0px;
+      }
+
       .rank {
         color: var(--color_caption1);
         font-weight: 500;
@@ -33,6 +42,10 @@ export class NaverPopupKeywordListItem extends LitElement {
         font-size: 1.5rem;
         width: 100%;
         text-align: left;
+      }
+
+      .keyword-item .keyword:hover {
+        text-decoration: underline;
       }
     `,
   ];

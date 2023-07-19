@@ -24,6 +24,7 @@ export class NaverPopupHeader extends LitElement {
       }
 
       .title {
+        margin: 0;
         font-size: 1.5rem;
         color: var(--color_title);
         font-weight: 700;
