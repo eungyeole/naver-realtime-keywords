@@ -1,10 +1,7 @@
 import debounce from "lodash/debounce";
-
-function loadWebComponent() {
-  const componentScript = document.createElement("script");
-  componentScript.src = "component.js"; // 웹 컴포넌트를 등록한 JavaScript 파일 경로
-  document.head.appendChild(componentScript);
-}
+import "@webcomponents/custom-elements";
+import "lit/polyfill-support.js";
+import "./elements/naver/popup";
 
 const booting = async () => {
   if (window.location.host !== "search.naver.com") {
@@ -12,7 +9,6 @@ const booting = async () => {
       const containerElement = document.getElementById("right-content-area");
 
       if (containerElement) {
-        loadWebComponent();
         const realTimeWordsElement = document.createElement("naver-popup");
         containerElement.prepend(realTimeWordsElement);
 
