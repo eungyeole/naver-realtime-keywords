@@ -2,22 +2,14 @@
   "manifest_version": 3,
   "name": "실시간 검색어",
   "description": "네이버에서 실시간 검색어 보기 - 실시간 검색어는 네이트의 실시간 검색어를 통해 제공합니다.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "permissions": [],
   "content_scripts": [
     {
       "runt_at": "document_start",
-      "matches": [
-        "https://www.naver.com/",
-        "https://search.naver.com/*"
-      ],
-      "js": [
-        "scripts/index.js",
-        "scripts/collection.js"
-      ],
-      "css": [
-        "styles/realtimekeywords.css"
-      ]
+      "matches": ["https://www.naver.com/", "https://search.naver.com/*"],
+      "js": ["scripts/index.js"],
+      "css": ["styles/realtimekeywords.css"]
     }
   ],
   "action": {

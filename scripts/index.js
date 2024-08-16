@@ -18,32 +18,37 @@ async function fetcher() {
   return top10;
 }
 
-(async () => {
-  if (window.location.host !== "search.naver.com") {
-    const initializeRealTimeWords = debounce(async () => {
-      const containerElement = document.getElementById("right-content-area");
-      const realtimeKeywordElement =
-        document.getElementById("realtime_keyword");
+const initializeRealTimeWords = async () => {
+  const containerElement = document.getElementById("right-content-area");
+  const realtimeKeywordElement = document.getElementById("realtime_keyword");
 
-      if (containerElement && !realtimeKeywordElement) {
-        const data = await fetcher();
+  if (containerElement && !realtimeKeywordElement) {
+    const data = await fetcher();
 
-        const wrapper = document.createElement("div");
-        wrapper.id = "realtime_keyword";
-        wrapper.appendChild(RealItemWordsList(data));
-        wrapper.appendChild(DropDownMenu(data));
+    const wrapper = document.createElement("div");
+    wrapper.id = "realtime_keyword";
+    wrapper.appendChild(RealItemWordsList(data));
+    wrapper.appendChild(DropDownMenu(data));
 
-        containerElement.prepend(wrapper);
-        const sliderViewport =
-          document.getElementsByClassName("slider-viewport")[0];
-        const sliderInterval = elementAdaptSlider(sliderViewport);
-        sliderInterval();
-      }
-    }, 1000);
-
-    document.addEventListener("DOMNodeInserted", initializeRealTimeWords);
+    containerElement.prepend(wrapper);
+    const sliderViewport =
+      document.getElementsByClassName("slider-viewport")[0];
+    const sliderInterval = elementAdaptSlider(sliderViewport);
+    sliderInterval();
   }
-})();
+};
+
+const waitRightContentArea = setInterval(() => {
+  const containerElement = document.getElementById("right-content-area");
+  if (containerElement) {
+    clearInterval(waitRightContentArea);
+    initializeRealTimeWords();
+  }
+}, 1000);
+
+if (window.location.host === "search.naver.com") {
+  waitRightContentArea();
+}
 
 function onToggle() {
   const dropdownElement = document.getElementsByClassName("keywords-menu")[0];
@@ -173,20 +178,11 @@ function DropDownFooter() {
   const element = document.createElement("div");
   element.className = "menu-footer";
 
-  const aTagCoffe = document.createElement("a");
-  aTagCoffe.className = "menu-footer_give-coffee";
-  aTagCoffe.innerText = "커피한잔 사주기";
-  aTagCoffe.href = coffeeUrl;
-  aTagCoffe.target = "_blank";
+  const versionTag = document.createElement("span");
+  versionTag.className = "menu-footer_text";
+  versionTag.innerText = "1.2.0";
 
-  const aTag = document.createElement("a");
-  aTag.href =
-    "mailto:eungyeole@naver.com?subject=광고문의&body=현재는 배너형, 텍스트형, 키워드형 광고를 지원하고 있습니다.%0D%0A더 자세한 문의는 메일로 부탁드립니다.";
-  aTag.className = "menu-footer_ads-link";
-  aTag.innerText = "광고문의";
-
-  element.appendChild(aTagCoffe);
-  element.appendChild(aTag);
+  element.appendChild(versionTag);
 
   return element;
 }
